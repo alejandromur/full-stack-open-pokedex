@@ -8,7 +8,8 @@ on:
 jobs:
   hello_world_job:
     runs-on: ubuntu-20.24
-    setps:
+    steps:
       - name: Say hello
         run: |
           echo "Hello WOrld!"
+
