@@ -7,15 +7,13 @@ on:
 
 jobs:
   hello_world_job:
-    runs-on: ubuntu-20.24
+    runs-on: ubuntu-latest
     steps:
       - name: Say hello
         run: |
           echo "Hello WOrld!"
       - name: Now it is
-        run: |
-          date +"Week number: %V Year: %y"
+        run: date +"Week number: %V Year: %y"
       - name: Directory content
-        run: |
-          ls -l
+        run: ls -l
 
