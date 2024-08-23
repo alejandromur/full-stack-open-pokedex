@@ -1,4 +1,4 @@
-name: Deploymeente pipeline
+name: Deployment pipeline
 
 on:
   push:
@@ -19,4 +19,13 @@ jobs:
         run: npm run eslint
       - name: Test
         run: npm run test
-
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run Playwright tests:e2e
+        run: npx playwright test:2e2
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
