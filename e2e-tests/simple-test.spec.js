@@ -10,4 +10,9 @@ describe('Pokedex', () => {
       )
     ).toBeVisible()
   })
+  test('pokemon page can be navigated to', async ({ page }) => {
+    await page.goto('')
+    await page.getByRole('link', { name: 'ivysaur' }).click()
+    await expect(page.getByText('chlorophyll', { exact: true })).toBeVisible()
+  })
 })
