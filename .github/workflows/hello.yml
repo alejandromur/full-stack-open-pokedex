@@ -3,7 +3,7 @@ name: Hello World!
 on:
   push:
     branches:
-      - main
+      - not_exisiting_branch_name
 
 jobs:
   hello_world_job:
@@ -17,4 +17,3 @@ jobs:
           date +"Week number: %V Year: %y"
       - name: Directory content
         run: ls -l
-
