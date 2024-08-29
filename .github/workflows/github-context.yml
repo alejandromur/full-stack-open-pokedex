@@ -25,4 +25,5 @@ jobs:
       - name: commiter author
         if: "!contains($COMMIT_MESSAGES, '#skip')"
         env:
-          COMMIT_AUTHOR: ${{ toJson(github.event.commits.*.author.username) }}
+          COMMIT_AUTHORS: ${{ toJson(github.event.commits.*.author.username) }}
+        run: echo "$COMMIT_AUTHORS"
