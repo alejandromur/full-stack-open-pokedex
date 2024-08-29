@@ -39,10 +39,18 @@ jobs:
   tag_release:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
+    permissions:
+      contents: write
     steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
       - name: Bump version and push tag
         if: ${{ github.event_name == 'push' }}
         uses: anothrNick/github-tag-action@1.70.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true
           DEFAULT_BUMP: patch
+          TAG_CONTEXT: branch
+          BRANCH_HISTORY: last
