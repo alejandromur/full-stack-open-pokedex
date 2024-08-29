@@ -17,3 +17,4 @@ Start by running `npm install` inside the project folder
 ## Deploy
 
 Pushing or merging Pull Request into `main` branch will build and deploy the app using Github Actions and Render.
+Each push to `main` branch will bump and tag the code. If commit message contains the string '#skip' this step will be skipped.
