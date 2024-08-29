@@ -38,6 +38,7 @@ jobs:
 
   tag_release:
     needs: [simple_deployment_pipeline]
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-20.04
     permissions:
       contents: write
@@ -54,5 +55,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WITH_V: true
           DEFAULT_BUMP: patch
-          TAG_CONTEXT: branch
-          BRANCH_HISTORY: last
+          PRERELEASE: true
