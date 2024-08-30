@@ -68,9 +68,9 @@ jobs:
           details: PR successfully merged into main branch
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: PR merge Failure
-        uses: rjstone/discord-webhook-notify@v1.0.4
+        uses: th0th/notify-discord@v0.4.1
         if: failure()
         with:
           severity: error
           details: PR failed to be merged into main branch
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK_URL }}
