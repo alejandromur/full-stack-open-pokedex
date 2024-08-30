@@ -56,21 +56,21 @@ jobs:
           DEFAULT_BUMP: patch
           PRERELEASE: true
 
-  notify_PR_status_on_discord: 
+  notify_PR_status_on_discord:
     needs: [tag_release]
     runs-on: ubuntu-20.04
     steps:
       - name: PR merge Success
-          uses: rjstone/discord-webhook-notify@v1.0.4
-          if: success()
-          with:
-            severity: info
-            details: Pull Request successfully merged into main branch
-            webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: rjstone/discord-webhook-notify@v1.0.4
+        if: success()
+        with:
+          severity: info
+          details: Pull Request successfully merged into main branch
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: PR merge Failure
-          uses: rjstone/discord-webhook-notify@v1.0.4
-          if: failure()
-          with:
-            severity: error
-            details: Pull Request failed to be merged into main branch
-            webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: rjstone/discord-webhook-notify@v1.0.4
+        if: failure()
+        with:
+          severity: error
+          details: Pull Request failed to be merged into main branch
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
