@@ -60,17 +60,11 @@ jobs:
     needs: [tag_release]
     runs-on: ubuntu-20.04
     steps:
-      - name: PR merge Success
-        uses: rjstone/discord-webhook-notify@v1.0.4
-        if: success()
-        with:
-          severity: info
-          details: PR successfully merged into main branch
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-      - name: PR merge Failure
+      - name: Notify discord
         uses: th0th/notify-discord@v0.4.1
-        if: failure()
-        with:
-          severity: error
-          details: PR failed to be merged into main branch
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        if: ${{ always() }}
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_JOB_NAME: 'Build and deploy'
+          GITHUB_JOB_STATUS: ${{ job.status }}
